@@ -15,8 +15,9 @@
 ## Cross-repository architecture
 
 Cubacadabra is one platform split across repositories. Before changing a
-shared or public boundary, read the matching `../docs/repos/<repo>/README.md`
-entry and the relevant current contract, system, and quality documentation.
+shared or public boundary, locate the sibling `docs` repository in the
+multi-repository checkout root and read `docs/repos/<repo>/README.md` plus the
+relevant current contract, system, and quality documentation.
 
 Respect repository ownership:
 
@@ -39,7 +40,8 @@ moving host-specific or game-specific behavior into the shared runtime.
 
 ## Shared Rust runtime safety
 
-`../rust` is consumed by Studio, Web/WASM, iOS, Android, and Desktop.
+The sibling `rust` repository is consumed by Studio, Web/WASM, iOS, Android,
+and Desktop.
 
 When changing shared Rust behavior:
 
