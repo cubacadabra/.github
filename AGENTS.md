@@ -1,3 +1,32 @@
+## Clean-sheet platform principles
+
+Cubacadabra is a modern, open-source alternative inspired by Roblox, not a
+reimplementation of Roblox's internal architecture. Use Roblox Studio as a
+UX benchmark (Explorer, Properties, picking, gizmos, grouping, prefabs,
+play/edit, undo, and search), not as the specification for native APIs,
+serialization, or runtime structure.
+
+- Native projects use deterministic, diffable JSON, Luau, and ordinary open
+  asset formats such as glTF/GLB, standard images/audio, and WGSL where
+  appropriate. Roblox XML is an import format only; never make native source
+  or runtime depend on Roblox XML or require an XML round trip.
+- Prefer one entity/scene-node model with identity, hierarchy, transform, and
+  composable components (`render`, `collision`, `light`, `text`, `interaction`,
+  `trigger`, `audio`, `script`, `spawn`, `camera`, `physics`, and similar) over
+  a growing `kind` or class hierarchy that mirrors Roblox (`Part`, `MeshPart`,
+  `PointLight`, `SurfaceGui`, `Seat`, etc.). Roblox class names belong in
+  quarantined import provenance when useful, not in the native type system.
+- Keep editable authoring source separate from compiled runtime packages. The
+  compiler may batch, instance, spatially partition, and otherwise optimize
+  large worlds without making those implementation details part of the source
+  model.
+- Treat Git, code review, CI, and AI-assisted editing as first-class workflows:
+  use stable IDs and ordering, avoid meaningless numeric or serialization
+  churn, and support reusable prefabs/instances rather than copy-pasted trees.
+- Studio is one client of the shared authoring model. CLI tools, Codex, scripts,
+  and CI should be able to inspect and modify the same structured source
+  without driving the Studio UI or inventing a second scene interpretation.
+
 ## Cubacadabra documentation authority
 
 - Keep hand-written, cross-repository Cubacadabra product documentation in the
