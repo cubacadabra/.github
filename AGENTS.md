@@ -23,6 +23,11 @@ serialization, or runtime structure.
 - Treat Git, code review, CI, and AI-assisted editing as first-class workflows:
   use stable IDs and ordering, avoid meaningless numeric or serialization
   churn, and support reusable prefabs/instances rather than copy-pasted trees.
+- Do not check in JSON files larger than 4 MB (4,000,000 bytes). Before
+  committing, inspect every added or modified `.json` file, including generated
+  output; if any exceeds the limit, stop and report it instead of committing.
+  Split, shard, or otherwise redesign the representation rather than bypassing
+  the check, unless the user explicitly approves an exception.
 - Studio is one client of the shared authoring model. CLI tools, Codex, scripts,
   and CI should be able to inspect and modify the same structured source
   without driving the Studio UI or inventing a second scene interpretation.
